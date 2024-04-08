@@ -1,0 +1,36 @@
+# Create a new event
+POST http://localhost:3333/events
+Content-Type: application/json
+
+{
+  "title": "Unite Summit",
+  "details": "Evento para quem é apaixonado por programação",
+  "maxAttendees": 100
+}
+
+###
+
+# Update event
+PUT http://localhost:3333/events/eb374903-ee94-4302-90cc-8c816f77cbe6
+Content-Type: application/json
+
+{
+  "title": "NLW Unite",
+  "details": "Evendo alterado",
+  "maxAttendees": 100
+}
+
+###
+
+# Remove a specific event by id
+DELETE http://localhost:3333/events/eb374903-ee94-4302-90cc-8c816f77cbe6
+
+###
+
+# Get specific event by id
+GET http://localhost:3333/events/eb374903-ee94-4302-90cc-8c816f77cbe6
+
+###
+
+# Get all events
+GET http://localhost:3333/events
