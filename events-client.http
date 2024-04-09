@@ -11,7 +11,7 @@ Content-Type: application/json
 ###
 
 # Update event
-PUT http://localhost:3333/events/bd7e0d2f-2b9f-40a9-8fa6-0dfcaa0fae13
+PUT http://localhost:3333/events/0fd1dcb8-1721-458e-a391-f029ea78b204
 Content-Type: application/json
 
 {
@@ -22,12 +22,12 @@ Content-Type: application/json
 ###
 
 # Remove a specific event by id
-DELETE http://localhost:3333/events/c69a43c6-e7e7-4b42-9128-228db125a886
+DELETE http://localhost:3333/events/0fd1dcb8-1721-458e-a391-f029ea78b204
 
 ###
 
 # Get specific event by id
-GET http://localhost:3333/events/bd7e0d2f-2b9f-40a9-8fa6-0dfcaa0fae13
+GET http://localhost:3333/events/0fd1dcb8-1721-458e-a391-f029ea78b204
 
 ###
 

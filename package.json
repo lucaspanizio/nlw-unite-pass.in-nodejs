@@ -12,8 +12,12 @@
   "scripts": {
     "dev": "tsx watch --env-file .env src/server.ts",
     "build": "tsup src --format esm",
+    "db:seed": "prisma db seed",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "devDependencies": {
     "typescript": "^5.4.4",
