@@ -5,11 +5,13 @@ export const ParamGetEventByIdSchema = z.object({
 });
 
 export const ResGetEventByIdSchema = {
-  204: z.object({
-    id: z.string(),
-    title: z.string(),
-    details: z.string().optional().nullable(),
-    slug: z.string(),
-    maxAttendees: z.number().optional().nullable(),
-  }),
+  200: z
+    .object({
+      id: z.string(),
+      title: z.string(),
+      details: z.string().optional().nullable(),
+      slug: z.string(),
+      maxAttendees: z.number().optional().nullable(),
+    })
+    .describe('Successful response'),
 };

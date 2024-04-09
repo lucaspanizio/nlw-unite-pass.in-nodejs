@@ -11,24 +11,23 @@ Content-Type: application/json
 ###
 
 # Update event
-PUT http://localhost:3333/events/eb374903-ee94-4302-90cc-8c816f77cbe6
+PUT http://localhost:3333/events/bd7e0d2f-2b9f-40a9-8fa6-0dfcaa0fae13
 Content-Type: application/json
 
 {
   "title": "NLW Unite",
-  "details": "Evendo alterado",
-  "maxAttendees": 100
+  "details": "Evento quem é avançado na programação"
 }
 
 ###
 
 # Remove a specific event by id
-DELETE http://localhost:3333/events/eb374903-ee94-4302-90cc-8c816f77cbe6
+DELETE http://localhost:3333/events/c69a43c6-e7e7-4b42-9128-228db125a886
 
 ###
 
 # Get specific event by id
-GET http://localhost:3333/events/eb374903-ee94-4302-90cc-8c816f77cbe6
+GET http://localhost:3333/events/bd7e0d2f-2b9f-40a9-8fa6-0dfcaa0fae13
 
 ###
 

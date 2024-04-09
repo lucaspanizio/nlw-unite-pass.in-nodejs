@@ -5,5 +5,5 @@ export const ParamDeleteEventSchema = z.object({
 });
 
 export const ResDeleteEventSchema = {
-  204: z.object({ eventId: z.string().uuid() }),
+  200: z.object({ message: z.string() }).describe('Successful response'),
 };

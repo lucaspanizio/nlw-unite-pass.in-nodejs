@@ -3,15 +3,15 @@ import { EventProps } from '@/entities/event-entity.ts';
 /** Request Types **/
 export type CreateEventRequest = {
   title: string;
-  details?: string | null;
-  maxAttendees?: number | null;
+  details?: string;
+  maxAttendees: number;
 };
 
 export type UpdateEventRequest = {
   id: string;
-  title: string;
-  details: string;
-  maxAttendees: number;
+  title?: string;
+  details?: string | null;
+  maxAttendees?: number;
 };
 
 /** Response Types **/

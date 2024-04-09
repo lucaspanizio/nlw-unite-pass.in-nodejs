@@ -30,38 +30,43 @@ export class EventsRepositoryPrisma implements EventRepository {
     return event;
   }
 
-  async update({
-    id,
-    title,
-    details,
-    maxAttendees,
-  }: UpdateEventRequest): UpdateEventResponse {
+  async update({ id, ...data }: UpdateEventRequest): UpdateEventResponse {
+    const nonUndefinedEntries = Object.entries(data).filter(
+      ([key, value]) => value !== undefined,
+    );
+
+    // Nenhum parâmetro foi informado
+    if (nonUndefinedEntries.length === 0) return null;
+
     const event = await this.findById(id);
 
-    if (!!event) {
-      await prisma.event.update({
-        where: {
-          id,
-        },
-        data: { title, details, maxAttendees },
-      });
+    // Nenhum evento foi encontrado pelo id informado
+    if (!event) return null;
+
+    const updateData = Object.fromEntries(nonUndefinedEntries);
+
+    if (data.title) {
+      updateData.slug = generateSlug(data.title);
     }
 
-    return event;
+    const updatedEvent = { ...event, ...updateData };
+
+    await prisma.event.update({
+      where: { id },
+      data: updateData,
+    });
+
+    return updatedEvent;
   }
 
   async findById(id: string): FindEventByIdResponse {
-    const event = await prisma.event.findUnique({
-      where: { id },
-    });
+    const event = await prisma.event.findUnique({ where: { id } });
 
     return event || null;
   }
 
   async findBySlug(slug: string): FindEventBySlugResponse {
-    const event = await prisma.event.findUnique({
-      where: { slug },
-    });
+    const event = await prisma.event.findUnique({ where: { slug } });
 
     return event || null;
   }
@@ -75,13 +80,9 @@ export class EventsRepositoryPrisma implements EventRepository {
   async delete(id: string): DeleteEventResponse {
     const event = await this.findById(id);
 
-    if (!!event) {
-      await prisma.event.delete({
-        where: {
-          id,
-        },
-      });
-    }
+    if (!event) return null;
+
+    await prisma.event.delete({ where: { id } });
 
     return event;
   }

@@ -20,6 +20,8 @@ export async function eventsRoutes(fastify: FastifyInstance) {
     '/',
     {
       schema: {
+        summary: 'Create an event',
+        tags: ['events'],
         body: BodySchema.CreateEvent,
         response: ResponseSchema.CreateEvent,
       },
@@ -52,6 +54,8 @@ export async function eventsRoutes(fastify: FastifyInstance) {
     '/:id',
     {
       schema: {
+        summary: 'Update an event',
+        tags: ['events'],
         body: BodySchema.UpdateEvent,
         params: ParamSchema.UpdateEvent,
         response: ResponseSchema.UpdateEvent,
@@ -80,6 +84,8 @@ export async function eventsRoutes(fastify: FastifyInstance) {
     '/:id',
     {
       schema: {
+        summary: 'Get an event',
+        tags: ['events'],
         params: ParamSchema.GetEventById,
         response: ResponseSchema.GetEventById,
       },
@@ -100,6 +106,8 @@ export async function eventsRoutes(fastify: FastifyInstance) {
     '/',
     {
       schema: {
+        summary: 'Get all events',
+        tags: ['events'],
         response: ResponseSchema.GetAllEvents,
       },
     },
@@ -118,6 +126,8 @@ export async function eventsRoutes(fastify: FastifyInstance) {
     '/:id',
     {
       schema: {
+        summary: 'Delete an event',
+        tags: ['events'],
         params: ParamSchema.DeleteEvent,
         response: ResponseSchema.DeleteEvent,
       },
