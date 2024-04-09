@@ -6,7 +6,7 @@ import {
   BodyUpdateEventSchema,
   ParamUpdateEventSchema,
   ResUpdateEventSchema,
-} from './events/update.event-schemas.ts';
+} from './events/update-event-schemas.ts';
 import {
   ParamGetEventByIdSchema,
   ResGetEventByIdSchema,

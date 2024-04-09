@@ -8,6 +8,7 @@ import {
   jsonSchemaTransform,
 } from 'fastify-type-provider-zod';
 import { eventsRoutes } from './routes/events.routes.ts';
+import { attendeesRoutes } from './routes/attendees.routes.ts';
 import { errorHandler } from './error-handler.ts';
 import { env } from './env/index.ts';
 
@@ -37,6 +38,10 @@ app.register(fastifySwaggerUI, {
 
 app.register(eventsRoutes, {
   prefix: '/events',
+});
+
+app.register(attendeesRoutes, {
+  prefix: '/attendees',
 });
 
 app.setValidatorCompiler(validatorCompiler);

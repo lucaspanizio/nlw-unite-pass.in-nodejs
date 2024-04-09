@@ -1,4 +1,4 @@
-import { EventProps } from '@/entities/event-entity.ts';
+import { EventProps } from '@/interfaces/event-interface.ts';
 
 /** Request Types **/
 export type CreateEventRequest = {
