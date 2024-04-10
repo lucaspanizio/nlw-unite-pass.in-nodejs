@@ -1,32 +1,13 @@
-import { EventProps } from '@/interfaces/event-interface.ts';
+import { Repository, Response } from './base-respository-contract.ts';
 
-/** Request Types **/
-export type CreateEventRequest = {
-  title: string;
-  details?: string;
-  maxAttendees: number;
-};
-
-export type UpdateEventRequest = {
+export interface Event {
   id: string;
-  title?: string;
+  title: string;
   details?: string | null;
-  maxAttendees?: number;
-};
+  slug: string;
+  maxAttendees?: number | null;
+}
 
-/** Response Types **/
-export type CreateEventResponse = Promise<EventProps>;
-export type UpdateEventResponse = Promise<EventProps | null>;
-export type DeleteEventResponse = Promise<EventProps | null>;
-export type FindEventByIdResponse = Promise<EventProps | null>;
-export type FindEventBySlugResponse = FindEventByIdResponse;
-export type FindAllEventsResponse = Promise<EventProps[]>;
-
-export interface EventRepository {
-  create(data: CreateEventRequest): CreateEventResponse;
-  update(data: UpdateEventRequest): UpdateEventResponse;
-  delete(id: string): DeleteEventResponse;
-  findById(id: string): FindEventByIdResponse;
-  findBySlug(slug: string): FindEventBySlugResponse;
-  findAll(): FindAllEventsResponse;
+export interface EventRepository extends Repository<Event> {
+  findBySlug(slug: string): Response<Event | null>;
 }

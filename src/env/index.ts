@@ -3,11 +3,11 @@ import { z } from 'zod';
 const envSchema = z.object({
   DATABASE_URL: z
     .string({
-      description: 'URL de conexão com a base de dados',
-      required_error: '😱 Você esqueceu de criar a chave',
+      description: 'Database connection URL',
+      required_error: '😱 You forgot to create the key',
     })
     .url({
-      message: 'Existe a chave mas o valor está incorreto ou vazio',
+      message: 'There is the key, but the value is incorrect or empty',
     }),
   PORT: z.coerce.number().positive().default(3333),
 });
@@ -23,7 +23,7 @@ if (!_env.success) {
     .join('\n  ');
 
   console.error(
-    '⚠️  Variáveis de ambiente inválidas ou faltando:\n',
+    '⚠️  Invalid or missing environment variables:\n',
     errorMessage,
   );
 

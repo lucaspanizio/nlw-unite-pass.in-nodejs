@@ -1,15 +1,10 @@
-import {
-  CreateEventResponse,
-  DeleteEventResponse,
-  EventRepository,
-  FindEventByIdResponse,
-  FindEventBySlugResponse,
-  FindAllEventsResponse,
-  UpdateEventResponse,
-  CreateEventRequest,
-  UpdateEventRequest,
-} from '../events-repository-contract.ts';
 import { prisma } from '@/lib/prisma/index.ts';
+import { EventRepository, Event } from '../events-repository-contract.ts';
+import {
+  Response,
+  CreateRequest,
+  UpdateRequest,
+} from '../base-respository-contract.ts';
 import { generateSlug } from '@/utils/generate-slug.ts';
 
 export class EventsRepositoryPrisma implements EventRepository {
@@ -17,7 +12,7 @@ export class EventsRepositoryPrisma implements EventRepository {
     title,
     details,
     maxAttendees,
-  }: CreateEventRequest): CreateEventResponse {
+  }: CreateRequest<Event>): Response<Event> {
     const event = await prisma.event.create({
       data: {
         title,
@@ -30,7 +25,7 @@ export class EventsRepositoryPrisma implements EventRepository {
     return event;
   }
 
-  async update({ id, ...data }: UpdateEventRequest): UpdateEventResponse {
+  async update({ id, ...data }: UpdateRequest<Event>): Response<Event | null> {
     const nonUndefinedEntries = Object.entries(data).filter(
       ([key, value]) => value !== undefined,
     );
@@ -59,25 +54,25 @@ export class EventsRepositoryPrisma implements EventRepository {
     return updatedEvent;
   }
 
-  async findById(id: string): FindEventByIdResponse {
+  async findById(id: string): Response<Event | null> {
     const event = await prisma.event.findUnique({ where: { id } });
 
     return event || null;
   }
 
-  async findBySlug(slug: string): FindEventBySlugResponse {
+  async findBySlug(slug: string): Response<Event | null> {
     const event = await prisma.event.findUnique({ where: { slug } });
 
     return event || null;
   }
 
-  async findAll(): FindAllEventsResponse {
+  async findAll(): Response<Event[]> {
     const events = await prisma.event.findMany();
 
     return events;
   }
 
-  async delete(id: string): DeleteEventResponse {
+  async delete(id: string): Response<Event | null> {
     const event = await this.findById(id);
 
     if (!event) return null;
