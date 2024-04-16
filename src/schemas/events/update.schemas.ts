@@ -6,18 +6,21 @@ export const BodyUpdateEventSchema = z.object({
   maxAttendees: z.number().int().positive().optional(),
 });
 
-export const ParamUpdateEventSchema = z.object({
-  id: z.string().uuid(),
+export const ParamsUpdateEventSchema = z.object({
+  eventId: z.string().uuid(),
 });
 
 export const ResUpdateEventSchema = {
   200: z
     .object({
-      id: z.string(),
-      title: z.string(),
-      details: z.string().optional().nullable(),
-      slug: z.string(),
-      maxAttendees: z.number().optional().nullable(),
+      event: z.object({
+        id: z.string().uuid(),
+        title: z.string(),
+        details: z.string().nullable(),
+        slug: z.string(),
+        maxAttendees: z.number().int().nullable(),
+        attendeesAmount: z.number().int(),
+      }),
     })
     .describe('Successful response'),
 };

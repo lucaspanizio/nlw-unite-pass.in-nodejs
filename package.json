@@ -21,11 +21,12 @@
     "seed": "tsx prisma/seed.ts"
   },
   "devDependencies": {
-    "typescript": "^5.4.4",
+    "@faker-js/faker": "^8.4.1",
     "@types/node": "^20.12.5",
-    "tsx": "^4.7.2",
+    "prisma": "^5.12.1",
     "tsup": "^8.0.2",
-    "prisma": "^5.12.1"
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.4"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",

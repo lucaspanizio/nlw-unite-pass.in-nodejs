@@ -10,6 +10,7 @@ const envSchema = z.object({
       message: 'There is the key, but the value is incorrect or empty',
     }),
   PORT: z.coerce.number().positive().default(3333),
+  NODE_ENV: z.enum(['dev', 'test', 'prod']).default('dev'),
 });
 
 const _env = envSchema.safeParse(process.env);

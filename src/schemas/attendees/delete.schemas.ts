@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-export const ParamDeleteAttendeeSchema = z.object({
-  id: z.string().regex(/^\d+$/).transform(Number),
+export const ParamsDeleteAttendeeSchema = z.object({
+  attendeeId: z.string().regex(/^\d+$/).transform(Number),
 });
 
 export const ResDeleteAttendeeSchema = {

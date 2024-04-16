@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-export const ParamDeleteEventSchema = z.object({
-  id: z.string().uuid(),
+export const ParamsDeleteEventSchema = z.object({
+  eventId: z.string().uuid(),
 });
 
 export const ResDeleteEventSchema = {

@@ -7,9 +7,9 @@ import {
   validatorCompiler,
   jsonSchemaTransform,
 } from 'fastify-type-provider-zod';
-import { eventsRoutes } from './routes/events.routes.ts';
-import { attendeesRoutes } from './routes/attendees.routes.ts';
-import { errorHandler } from './error-handler.ts';
+import { eventsRoutes } from '@/http/routes/events.routes.ts';
+import { attendeesRoutes } from '@/http/routes/attendees.routes.ts';
+import { errorHandler } from './use-cases/errors/error-handler.ts';
 import { env } from './env/index.ts';
 
 const app = fastify();
