@@ -1,6 +1,6 @@
+import { prisma } from '../src/lib/prisma/index';
 import { faker } from '@faker-js/faker';
 import { Attendee } from '@prisma/client';
-import { prisma } from '../src/lib/prisma';
 
 // Quantidade de participantes para os quais será feito check-in
 const QUANTITY_FOR_CHECKIN = 30;
@@ -62,12 +62,10 @@ async function createCheckIns() {
 
     if (attendee.createdAt instanceof Date) {
       const randomTime = now.getTime() - Math.random() * TIME_INTERVAL;
-      const createdAt = new Date(randomTime);
 
       await prisma.checkInd.create({
         data: {
-          id: index,
-          createdAt,
+          createdAt: new Date(randomTime),
           attendeeId: attendee.id,
         },
       });
@@ -78,7 +76,7 @@ async function createCheckIns() {
 async function seed() {
   await clearTables();
 
-  Promise.all([createEvent(), createAttendees(), createCheckIns()]);
+  Promise.allSettled([createEvent(), createAttendees(), createCheckIns()]);
 }
 
 seed()
